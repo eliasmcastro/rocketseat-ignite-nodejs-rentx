@@ -19,6 +19,12 @@
   <img alt="Back-end" src=".github/backend.png" width="90%">
 </p>
 
+<p align="center">Banco de Dados</p>
+
+<p align="center">
+  <img alt="Back-end" src=".github/database.png" width="90%">
+</p>
+
 ## Como executar o projeto
 
 ### Clonar este repositório
@@ -75,6 +81,8 @@ yarn test
 - `yarn add typescript -D` instala o TypeScript
 - `yarn add express` instala o Express
 - `yarn add @types/express -D` instala a definição de tipo da biblioteca Express
+- `yarn add uuid` instala o UUID
+- `yarn add @types/uuid -D` instala a definição de tipo da biblioteca UUID
 - `yarn tsc --init` cria o arquivo de configuração do TypeScript
 - `yarn add ts-node-dev -D` instala ferramenta que reinicia automaticamente o servidor quando alterações nos arquivos são detectadas
 - Em package.json:
@@ -116,3 +124,11 @@ yarn test
   "dev": "ts-node-dev --inspect --transpile-only --ignore-watch node_modules --respawn src/server.ts"
 }
 ```
+
+### SOLID
+
+- S => SRP: Single Responsiblity Principle (Princípio da responsabilidade única)
+- O => OCP: Open-Closed Principle (Princípio Aberto-Fechado)
+- L => LSP: Liskov Substitution Principle (Princípio da substituição de Liskov)
+- I => ISP: Interface Segregation Principle (Princípio da Segregação da Interface)
+- D => DIP: Dependency Inversion Principle (Princípio da inversão da dependência)
