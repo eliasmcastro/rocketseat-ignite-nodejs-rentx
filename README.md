@@ -132,3 +132,12 @@ yarn test
 - L => LSP: Liskov Substitution Principle (Princípio da substituição de Liskov)
 - I => ISP: Interface Segregation Principle (Princípio da Segregação da Interface)
 - D => DIP: Dependency Inversion Principle (Princípio da inversão da dependência)
+
+### Upload de arquivos
+
+- `yarn add multer` para instalar o multer
+- `yarn add @types/multer -D` instala a definição de tipo da biblioteca multer
+
+### Leitura de arquivos CSV
+
+- `yarn add csv-parse` para instalar a csv-parse
