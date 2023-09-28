@@ -1,0 +1,7 @@
+.vscode/
+node_modules/
+tmp/*
+!tmp/uploads
+!tmp/.gitkeep
+tmp/uploads/*
+!tmp/uploads/.gitkeep
