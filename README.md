@@ -142,3 +142,8 @@ yarn test
 ### Leitura de arquivos CSV
 
 - `yarn add csv-parse` para instalar a csv-parse
+
+### Swagger
+
+- `yarn add swagger-ui-express` para instalar o swagger
+- `yarn add @types/swagger-ui-express -D` instala a definição de tipo da biblioteca swagger
