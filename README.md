@@ -147,3 +147,25 @@ yarn test
 
 - `yarn add swagger-ui-express` para instalar o swagger
 - `yarn add @types/swagger-ui-express -D` instala a definição de tipo da biblioteca swagger
+
+### Docker e Docker Compose
+
+- [Documentação de instalação do docker](https://efficient-sloth-d85.notion.site/Docker-e-Docker-Compose-16771f2ceefe4a05a8c29df4ca49e97a)
+
+- `docker build -t rentx .` criar imagem da aplicação
+- `docker run -p 3333:3333 rentx` criar container da imagem da aplicação
+- `docker ps` visualizar apenas os containers em execução
+- `docker ps -a` visualizar todos os containers (parados e em execução)
+- `docker exec -it ${nomeContainer} /bin/bash` acessar um container
+  - CTRL + D para sair
+- `docker logs -f ${nomeContainer}` ver log de um container
+- `docker start ${nomeContainer}` iniciar um container
+- `docker stop ${nomeContainer}` parar um container
+- `docker rm ${nomeContainer}` remover um container
+- `docker images` listar imagens
+- `docker rmi ${nomeImagen}` remover uma imagem
+- `docker-compose up` criar e iniciar um container
+- `docker-compose up -d` criar e iniciar um container, mas libera o terminal
+- `docker-compose start` iniciar um container
+- `docker-compose stop` parar um container
+- `docker-compose down` remover um container
