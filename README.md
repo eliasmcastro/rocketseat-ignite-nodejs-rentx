@@ -151,7 +151,6 @@ yarn test
 ### Docker e Docker Compose
 
 - [Documentação de instalação do docker](https://efficient-sloth-d85.notion.site/Docker-e-Docker-Compose-16771f2ceefe4a05a8c29df4ca49e97a)
-
 - `docker build -t rentx .` criar imagem da aplicação
 - `docker run -p 3333:3333 rentx` criar container da imagem da aplicação
 - `docker ps` visualizar apenas os containers em execução
@@ -166,6 +165,15 @@ yarn test
 - `docker rmi ${nomeImagen}` remover uma imagem
 - `docker-compose up` criar e iniciar um container
 - `docker-compose up -d` criar e iniciar um container, mas libera o terminal
+- `docker-compose up --force-recreate -d` forçar re-criar e iniciar um container, mas libera o terminal
 - `docker-compose start` iniciar um container
 - `docker-compose stop` parar um container
 - `docker-compose down` remover um container
+
+### TypeORM
+
+- `yarn add typeorm@0.2.45` para instalar o typeorm
+  - [Atualizando o TypeORM no Rentx](https://efficient-sloth-d85.notion.site/Atualizando-o-TypeORM-no-Rentx-7988bcb23f9f417197fcf2113a74161a)
+  - [Refatoração Docker com TypeORM](https://efficient-sloth-d85.notion.site/Refatora-o-Docker-com-TypeORM-4500fc0d075349ac9b97d670e734d41b)
+- `yarn add reflect-metadata` para instalar o reflect-metadata
+- `yarn add pg` para instalar o driver do PostgreSQL
