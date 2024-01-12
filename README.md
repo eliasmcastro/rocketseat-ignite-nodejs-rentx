@@ -45,12 +45,26 @@ git clone https://github.com/eliasmcastro/rocketseat-ignite-nodejs-rentx.git
 
 ### Passos para a execução
 
-**1. Executar aplicação**
+**1. Criar o banco de dados utilizando o Docker**
+
+Criar e iniciar os containers do banco de dados e da aplicação
+
+```bash
+docker-compose up -d
+```
+
+**2. Executar aplicação**
 
 Instalar as dependências do projeto
 
 ```bash
 yarn
+```
+
+Executar as migrations
+
+```bash
+yarn typeorm migration:run
 ```
 
 Iniciar o servidor de desenvolvimento
@@ -151,24 +165,24 @@ yarn test
 ### Docker e Docker Compose
 
 - [Documentação de instalação do docker](https://efficient-sloth-d85.notion.site/Docker-e-Docker-Compose-16771f2ceefe4a05a8c29df4ca49e97a)
-- `docker build -t rentx .` criar imagem da aplicação
-- `docker run -p 3333:3333 rentx` criar container da imagem da aplicação
-- `docker ps` visualizar apenas os containers em execução
-- `docker ps -a` visualizar todos os containers (parados e em execução)
-- `docker exec -it ${nomeContainer} /bin/bash` acessar um container
+- `docker build -t rentx .` para criar imagem da aplicação
+- `docker run -p 3333:3333 rentx` para criar container da imagem da aplicação
+- `docker ps` para visualizar apenas os containers em execução
+- `docker ps -a` para visualizar todos os containers (parados e em execução)
+- `docker exec -it ${nomeContainer} /bin/bash` para acessar um container
   - CTRL + D para sair
-- `docker logs -f ${nomeContainer}` ver log de um container
-- `docker start ${nomeContainer}` iniciar um container
-- `docker stop ${nomeContainer}` parar um container
-- `docker rm ${nomeContainer}` remover um container
-- `docker images` listar imagens
-- `docker rmi ${nomeImagen}` remover uma imagem
-- `docker-compose up` criar e iniciar um container
-- `docker-compose up -d` criar e iniciar um container, mas libera o terminal
-- `docker-compose up --force-recreate -d` forçar re-criar e iniciar um container, mas libera o terminal
-- `docker-compose start` iniciar um container
-- `docker-compose stop` parar um container
-- `docker-compose down` remover um container
+- `docker logs -f ${nomeContainer}` para ver log de um container
+- `docker start ${nomeContainer}` para iniciar um container
+- `docker stop ${nomeContainer}` para parar um container
+- `docker rm ${nomeContainer}` para remover um container
+- `docker images` para listar imagens
+- `docker rmi ${nomeImagen}` para remover uma imagem
+- `docker-compose up` para criar e iniciar um container
+- `docker-compose up -d` para criar e iniciar um container, mas libera o terminal
+- `docker-compose up --force-recreate -d` para forçar re-criar e iniciar um container, mas libera o terminal
+- `docker-compose start` para iniciar um container
+- `docker-compose stop` para parar um container
+- `docker-compose down` para remover um container
 
 ### TypeORM
 
@@ -177,3 +191,9 @@ yarn test
   - [Refatoração Docker com TypeORM](https://efficient-sloth-d85.notion.site/Refatora-o-Docker-com-TypeORM-4500fc0d075349ac9b97d670e734d41b)
 - `yarn add reflect-metadata` para instalar o reflect-metadata
 - `yarn add pg` para instalar o driver do PostgreSQL
+
+### Migrations
+
+- `yarn typeorm migration:create -n CreateCategories` para criar a migration de categorias
+- `yarn typeorm migration:run` para executar as migrations criadas
+- `yarn typeorm migration:revert` para reveter a execução das migrations
