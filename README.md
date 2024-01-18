@@ -195,5 +195,10 @@ yarn test
 ### Migrations
 
 - `yarn typeorm migration:create -n CreateCategories` para criar a migration de categorias
+- `yarn typeorm migration:create -n CreateSpecifications` para criar a migration de categorias
 - `yarn typeorm migration:run` para executar as migrations criadas
 - `yarn typeorm migration:revert` para reveter a execução das migrations
+
+### Injeção de dependência
+
+- `yarn add tsyringe` para instalar o TSyringe
