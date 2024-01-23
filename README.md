@@ -37,23 +37,16 @@ git clone https://github.com/eliasmcastro/rocketseat-ignite-nodejs-rentx.git
 
 - [Node.js](https://nodejs.org)
 - [Yarn](https://yarnpkg.com)
+- [Docker](https://www.docker.com)
 
 #### Opcional
 
 - [Insomnia](https://insomnia.rest)
-- [Docker](https://www.docker.com)
+- [DBeaver](https://dbeaver.io/)
 
 ### Passos para a execução
 
-**1. Criar o banco de dados utilizando o Docker**
-
-Criar e iniciar os containers do banco de dados e da aplicação
-
-```bash
-docker-compose up -d
-```
-
-**2. Executar aplicação**
+**1. Instalar as dependências**
 
 Instalar as dependências do projeto
 
@@ -61,23 +54,50 @@ Instalar as dependências do projeto
 yarn
 ```
 
+**2. Criar os containers utilizando o Docker**
+
+Criar e iniciar os containers do banco de dados e da aplicação
+
+```bash
+docker-compose up -d
+```
+
+**3. Executar as migrations**
+
 Executar as migrations
 
 ```bash
 yarn typeorm migration:run
 ```
 
-Iniciar o servidor de desenvolvimento
+**4. Rotas da aplicação**
 
-```bash
-yarn dev
-```
-
-A aplicação começará a ser executada em http://localhost:3333
+- A aplicação começará a ser executada em http://localhost:3333
+- A documentação da API pode ser acessada em http://localhost:3333/api-docs
 
 _Dica: utilizar o Insomnia para testar as rotas_
 
 - Abrir o Insomnia -> Application -> Preferences -> Data -> Import Data -> From File -> Selecionar o arquivo insomnia.json
+
+**5. Banco de dados**
+
+Você pode utilizar o DBeaver para acessar o banco de dados da aplicação, utilizando os seguintes dados de conexão:
+  - Host: localhost
+  - Database: rentx
+  - Username: docker
+  - Password: ignite
+
+**6. Logs da aplicação**
+
+Executar o comando `docker logs -f rentx`
+
+**7. Operações com os containers criados**
+
+- `docker-compose up` para criar e iniciar os containers
+- `docker-compose start` para iniciar os containers
+- `docker-compose stop` para parar os containers
+- `docker-compose down` para remover os containers
+- `docker-compose down -v --rmi local` para remover tudo (containers, volumes e imagens)
 
 ### Testes automatizados
 
@@ -88,6 +108,18 @@ yarn test
 ```
 
 ## Anotações
+
+### Ferramentas utilizadas
+
+- [Node.js](https://nodejs.org)
+  - O Node.js deve ser instalado via [package manager](https://nodejs.org/en/download/package-manager/) utilizando o Chocolatey no Windows
+    - Instalar o [Chocolatey](https://chocolatey.org/install)
+    - Executar `cinst nodejs-lts` para instalar o Node.js
+    - Executar `node -v` e `npm -v` para verificar se a instalação deu certo
+- [Yarn](https://yarnpkg.com)
+  - Instalar o Yarn
+  - Executar `yarn -v` para verificar se a instalação deu certo
+- [Visual Studio Code](https://code.visualstudio.com)
 
 ### Configurando estrutura
 
@@ -132,7 +164,7 @@ yarn test
 }
 ```
 
-- Para que o debugger possa se conectar à nossa aplicação, é necessário que o comando dev esteja da seguinte maneira:
+- Para que o debugger possa se conectar à nossa aplicação, é necessário que o comando dev tenha a flag `--inspect`:
 
 ```json
 "scripts": {
@@ -161,6 +193,7 @@ yarn test
 
 - `yarn add swagger-ui-express` para instalar o swagger
 - `yarn add @types/swagger-ui-express -D` instala a definição de tipo da biblioteca swagger
+- Para acessar a documentação criada: http://localhost:3333/api-docs
 
 ### Docker e Docker Compose
 
@@ -183,6 +216,14 @@ yarn test
 - `docker-compose start` para iniciar um container
 - `docker-compose stop` para parar um container
 - `docker-compose down` para remover um container
+- `docker-compose down -v --rmi local` para remover tudo (containers, volumes e imagens)
+- No Windows é necessário adicionar no script de dev no package.json a flag `--poll` para que qualquer alteração realizadas nos arquivos sejam refletidas no container
+
+```json
+"scripts": {
+  "dev": "ts-node-dev --inspect --transpile-only --poll --ignore-watch node_modules --respawn src/server.ts"
+}
+```
 
 ### TypeORM
 
