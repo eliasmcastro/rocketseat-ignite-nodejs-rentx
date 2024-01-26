@@ -237,6 +237,7 @@ yarn test
 
 - `yarn typeorm migration:create -n CreateCategories` para criar a migration de categorias
 - `yarn typeorm migration:create -n CreateSpecifications` para criar a migration de categorias
+- `yarn typeorm migration:create -n CreateUsers` para criar a migration de usuários
 - `yarn typeorm migration:run` para executar as migrations criadas
 - `yarn typeorm migration:revert` para reveter a execução das migrations
 
