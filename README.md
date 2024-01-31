@@ -244,3 +244,13 @@ yarn test
 ### Injeção de dependência
 
 - `yarn add tsyringe` para instalar o TSyringe
+
+### Criptografrar senha
+
+- `yarn add bcryptjs` para instalar o bcrypt
+- `yarn add @types/bcryptjs -D` instala a definição de tipo da biblioteca bcryptjs
+
+### Token do usuário
+
+- `yarn add jsonwebtoken` para instalar o jsonwebtoken
+- `yarn add @types/jsonwebtoken -D` instala a definição de tipo da biblioteca jsonwebtoken
