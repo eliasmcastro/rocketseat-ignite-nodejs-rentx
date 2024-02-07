@@ -254,3 +254,7 @@ yarn test
 
 - `yarn add jsonwebtoken` para instalar o jsonwebtoken
 - `yarn add @types/jsonwebtoken -D` instala a definição de tipo da biblioteca jsonwebtoken
+
+### Tratando erros
+
+- `yarn add express-async-errors` para instalar o express-async-errors
