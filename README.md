@@ -9,7 +9,7 @@
 <p align="center">O Rentx é um projeto (API) para aluguel de carros</p>
 
 <p align="center">
-  <a href="#como-executar-o-projeto">Como executar o projeto</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#como-executar-o-projeto">Como executar o projeto</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;
   <a href="#anotações">Anotações</a>
 </p>
 
@@ -258,3 +258,13 @@ yarn test
 ### Tratando erros
 
 - `yarn add express-async-errors` para instalar o express-async-errors
+
+### Testes
+
+- Testes unitários
+- Testes de integração
+- TDD (Test Driven Development)
+- `yarn add jest -D` para instalar o jest
+- `yarn add @types/jest -D` instala a definição de tipo da biblioteca jest
+- `yarn add ts-jest -D` para instalar o ts-jest
+- `yarn jest --init` cria o arquivo de configuração do jest
