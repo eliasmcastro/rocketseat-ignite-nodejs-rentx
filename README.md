@@ -131,13 +131,13 @@ yarn test
 - `yarn add @types/uuid -D` instala a definição de tipo da biblioteca UUID
 - `yarn tsc --init` cria o arquivo de configuração do TypeScript
 - `yarn add ts-node-dev -D` instala ferramenta que reinicia automaticamente o servidor quando alterações nos arquivos são detectadas
-- Em package.json:
+- Em `package.json`:
 
-```json
-"scripts": {
-  "dev": "ts-node-dev --transpile-only --ignore-watch node_modules --respawn src/server.ts"
-}
-```
+  ```json
+  "scripts": {
+    "dev": "ts-node-dev --transpile-only --ignore-watch node_modules --respawn src/server.ts"
+  }
+  ```
 
 ### Padrões de Projeto com ESLint e Prettier
 
@@ -147,30 +147,30 @@ yarn test
 
 ### Debugando Node.js pelo VS Code
 
-- Criar arquivo launch.json, escolher Node.js e configurá-lo conforme as configurações abaixo:
+- Criar arquivo `launch.json`, escolher Node.js e configurá-lo conforme as configurações abaixo:
 
-```json
-{
-  "version": "0.2.0",
-  "configurations": [
-    {
-      "type": "node",
-      "request": "attach",
-      "restart": true,
-      "name": "App Debug",
-      "skipFiles": ["<node_internals>/**"]
-    }
-  ]
-}
-```
+  ```json
+  {
+    "version": "0.2.0",
+    "configurations": [
+      {
+        "type": "node",
+        "request": "attach",
+        "restart": true,
+        "name": "App Debug",
+        "skipFiles": ["<node_internals>/**"]
+      }
+    ]
+  }
+  ```
 
 - Para que o debugger possa se conectar à nossa aplicação, é necessário que o comando dev tenha a flag `--inspect`:
 
-```json
-"scripts": {
-  "dev": "ts-node-dev --inspect --transpile-only --ignore-watch node_modules --respawn src/server.ts"
-}
-```
+  ```json
+  "scripts": {
+    "dev": "ts-node-dev --inspect --transpile-only --ignore-watch node_modules --respawn src/server.ts"
+  }
+  ```
 
 ### SOLID
 
@@ -217,13 +217,13 @@ yarn test
 - `docker-compose stop` para parar um container
 - `docker-compose down` para remover um container
 - `docker-compose down -v --rmi local` para remover tudo (containers, volumes e imagens)
-- No Windows é necessário adicionar no script de dev no package.json a flag `--poll` para que qualquer alteração realizadas nos arquivos sejam refletidas no container
+- No Windows é necessário adicionar no script de dev no `package.json` a flag `--poll` para que qualquer alteração realizadas nos arquivos sejam refletidas no container
 
-```json
-"scripts": {
-  "dev": "ts-node-dev --inspect --transpile-only --poll --ignore-watch node_modules --respawn src/server.ts"
-}
-```
+  ```json
+  "scripts": {
+    "dev": "ts-node-dev --inspect --transpile-only --poll --ignore-watch node_modules --respawn src/server.ts"
+  }
+  ```
 
 ### TypeORM
 
@@ -268,3 +268,42 @@ yarn test
 - `yarn add @types/jest -D` instala a definição de tipo da biblioteca jest
 - `yarn add ts-jest -D` para instalar o ts-jest
 - `yarn jest --init` cria o arquivo de configuração do jest
+
+### Melhorando os imports
+
+- `yarn add tsconfig-paths -D` para instalar o tsconfig-paths
+
+- Adicionar no `tsconfig.json`
+
+  ```json
+  "baseUrl": "./src",
+  "paths": {
+    "@config/*": ["config/*"],
+    "@errors/*": ["errors/*"],
+    "@modules/*": ["modules/*"],
+    "@shared/*": ["shared/*"],
+    "@utils/*": ["utils/*"]
+  },
+  ```
+
+- Adicionar no script de dev e typeorm no `package.json` a flag `-r tsconfig-paths/register` para realizar a tradução do uso do @ nos imports
+
+  ```json
+  "scripts": {
+    "dev": "ts-node-dev -r tsconfig-paths/register --inspect --transpile-only --poll --ignore-watch node_modules --respawn src/server.ts",
+    "typeorm": "ts-node-dev -r tsconfig-paths/register ./node_modules/typeorm/cli",
+  }
+  ```
+
+- Adicionar no `jest.config.ts` a propriedade abaixo
+
+  Obs: Foi necessário remover todos os comentários do arquivo `tsconfig.json`
+
+  ```ts
+  import { pathsToModuleNameMapper } from 'ts-jest';
+  import { compilerOptions } from './tsconfig.json';
+
+  moduleNameMapper: pathsToModuleNameMapper(compilerOptions.paths, {
+    prefix: '<rootDir>/src/',
+  }),
+  ```
