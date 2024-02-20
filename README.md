@@ -279,7 +279,6 @@ yarn test
   "baseUrl": "./src",
   "paths": {
     "@config/*": ["config/*"],
-    "@errors/*": ["errors/*"],
     "@modules/*": ["modules/*"],
     "@shared/*": ["shared/*"],
     "@utils/*": ["utils/*"]

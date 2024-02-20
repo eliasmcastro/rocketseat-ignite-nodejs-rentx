@@ -1,17 +1,15 @@
-import { AppError } from '@errors/AppError';
-import { CategoriesRepositoryInMemory } from '@modules/cars/repositories/in-memory/CategoriesRepositoryInMemory';
+import { CategoriesRepository } from '@modules/cars/infra/in-memory/repositories/CategoriesRepository';
+import { AppError } from '@shared/errors/AppError';
 
 import { CreateCategoryUseCase } from './CreateCategoryUseCase';
 
 let createCategoryUseCase: CreateCategoryUseCase;
-let categoriesRepositoryInMemory: CategoriesRepositoryInMemory;
+let categoriesRepository: CategoriesRepository;
 
 describe('Create Category', () => {
   beforeEach(() => {
-    categoriesRepositoryInMemory = new CategoriesRepositoryInMemory();
-    createCategoryUseCase = new CreateCategoryUseCase(
-      categoriesRepositoryInMemory,
-    );
+    categoriesRepository = new CategoriesRepository();
+    createCategoryUseCase = new CreateCategoryUseCase(categoriesRepository);
   });
 
   it('should be able to create a new category', async () => {
@@ -25,7 +23,7 @@ describe('Create Category', () => {
       description: category.description,
     });
 
-    const categoryCreated = await categoriesRepositoryInMemory.findByName(
+    const categoryCreated = await categoriesRepository.findByName(
       category.name,
     );
 

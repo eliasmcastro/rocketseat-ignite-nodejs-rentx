@@ -1,21 +1,19 @@
-import { AppError } from '@errors/AppError';
 import { ICreateUserDTO } from '@modules/accounts/dtos/ICreateUserDTO';
-import { UsersRepositoryInMemory } from '@modules/accounts/repositories/in-memory/UsersRepositoryInMemory';
+import { UsersRepository } from '@modules/accounts/infra/in-memory/repositories/UsersRepository';
 import { CreateUserUseCase } from '@modules/accounts/useCases/createUser/CreateUserUseCase';
+import { AppError } from '@shared/errors/AppError';
 
 import { AuthenticateUserUseCase } from './AuthenticateUserUseCase';
 
 let createUserUseCase: CreateUserUseCase;
 let authenticateUserUseCase: AuthenticateUserUseCase;
-let usersRepositoryInMemory: UsersRepositoryInMemory;
+let usersRepository: UsersRepository;
 
 describe('Authenticate User', () => {
   beforeEach(() => {
-    usersRepositoryInMemory = new UsersRepositoryInMemory();
-    createUserUseCase = new CreateUserUseCase(usersRepositoryInMemory);
-    authenticateUserUseCase = new AuthenticateUserUseCase(
-      usersRepositoryInMemory,
-    );
+    usersRepository = new UsersRepository();
+    createUserUseCase = new CreateUserUseCase(usersRepository);
+    authenticateUserUseCase = new AuthenticateUserUseCase(usersRepository);
   });
 
   it('should be able to authenticate an user', async () => {
