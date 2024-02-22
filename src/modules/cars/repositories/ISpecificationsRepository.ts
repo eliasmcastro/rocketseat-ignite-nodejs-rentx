@@ -9,4 +9,4 @@ interface ISpecificationsRepository {
   findByName(name: string): Promise<Specification>;
 }
 
-export { ISpecificationsRepository, ICreateSpecificationDTO };
+export { ISpecificationsRepository };

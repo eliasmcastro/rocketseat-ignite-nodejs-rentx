@@ -9,4 +9,4 @@ interface ICategoriesRepository {
   findByName(name: string): Promise<Category>;
 }
 
-export { ICategoriesRepository, ICreateCategoryDTO };
+export { ICategoriesRepository };
