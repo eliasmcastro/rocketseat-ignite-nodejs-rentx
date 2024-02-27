@@ -71,7 +71,18 @@ Executar as migrations
 yarn typeorm migration:run
 ```
 
-**4. Rotas da aplicação**
+**4. Criar usuário admin**
+
+Executar o comando
+
+```bash
+yarn seed:admin
+```
+Dados do usuário:
+ - email: admin@rentx.com.br
+ - password: admin
+
+**5. Rotas da aplicação**
 
 - A aplicação começará a ser executada em http://localhost:3333
 - A documentação da API pode ser acessada em http://localhost:3333/api-docs
@@ -80,7 +91,7 @@ _Dica: utilizar o Insomnia para testar as rotas_
 
 - Abrir o Insomnia -> Application -> Preferences -> Data -> Import Data -> From File -> Selecionar o arquivo insomnia.json
 
-**5. Banco de dados**
+**6. Banco de dados**
 
 Você pode utilizar o DBeaver para acessar o banco de dados da aplicação, utilizando os seguintes dados de conexão:
   - Host: localhost
@@ -88,11 +99,11 @@ Você pode utilizar o DBeaver para acessar o banco de dados da aplicação, util
   - Username: docker
   - Password: ignite
 
-**6. Logs da aplicação**
+**7. Logs da aplicação**
 
 Executar o comando `docker logs -f rentx`
 
-**7. Operações com os containers criados**
+**8. Operações com os containers criados**
 
 - `docker-compose up` para criar e iniciar os containers
 - `docker-compose start` para iniciar os containers
