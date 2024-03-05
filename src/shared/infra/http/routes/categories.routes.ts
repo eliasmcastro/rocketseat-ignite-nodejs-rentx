@@ -11,11 +11,11 @@ import { ensureAuthenticated } from '../middlewares/ensureAuthenticated';
 
 const categoriesRoutes = Router();
 
-const uploadCategories = multer(uploadConfig.upload('./tmp/uploads'));
-
 const createCategoryController = new CreateCategoryController();
 const importCategoryController = new ImportCategoryController();
 const listCategoriesController = new ListCategoriesController();
+
+const uploadCategories = multer(uploadConfig.upload('./tmp/uploads'));
 
 categoriesRoutes.post(
   '/',
