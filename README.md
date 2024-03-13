@@ -408,3 +408,7 @@ yarn test
     prefix: '<rootDir>/src/',
   }),
   ```
+
+### Trabalhando com datas
+
+- `yarn add dayjs` para instalar o dayjs
