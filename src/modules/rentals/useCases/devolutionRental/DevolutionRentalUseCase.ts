@@ -20,18 +20,18 @@ class DevolutionRentalUseCase {
 
   async execute({ id }: IDevolutionRentalDTO): Promise<Rental> {
     const rental = await this.rentalsRepository.findById(id);
-    const car = await this.carsRepository.findById(rental.car_id);
 
     if (!rental) {
       throw new AppError('Rental does not exists!');
     }
 
-    const minimum_daily = 1;
+    const car = await this.carsRepository.findById(rental.car_id);
+
     const dateNow = this.dateProvider.dateNow();
 
     let daily = this.dateProvider.compareInDays(rental.start_date, dateNow);
     if (daily <= 0) {
-      daily = minimum_daily;
+      daily = 1;
     }
 
     const delay = this.dateProvider.compareInDays(
@@ -40,12 +40,10 @@ class DevolutionRentalUseCase {
     );
 
     let total = 0;
-
     if (delay > 0) {
       const calculate_fine = delay * car.fine_amount;
       total = calculate_fine;
     }
-
     total += daily * car.daily_rate;
 
     rental.end_date = this.dateProvider.dateNow();

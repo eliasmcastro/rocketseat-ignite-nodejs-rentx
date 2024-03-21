@@ -113,6 +113,14 @@ Executar o comando `docker logs -f rentx`
 
 ### Testes automatizados
 
+Antes de executar os testes é necessário acessar a ferramenta que você está utilizando para acessar o banco de dados da aplicação e criar o banco de dados de teste chamado `rentx_test`
+
+Comanda para criar o banco de dados
+
+```sql
+create database rentx_test;
+```
+
 Para executar os testes
 
 ```bash
@@ -370,6 +378,8 @@ yarn test
 - `yarn add @types/jest -D` instala a definição de tipo da biblioteca jest
 - `yarn add ts-jest -D` para instalar o ts-jest
 - `yarn jest --init` cria o arquivo de configuração do jest
+- `yarn add supertest` para instalar o supertest (teste de integração)
+- `yarn add @types/supertest -D` para instalar o supertest (teste de integração)
 
 ### Melhorando os imports
 
@@ -412,3 +422,8 @@ yarn test
 ### Trabalhando com datas
 
 - `yarn add dayjs` para instalar o dayjs
+
+### Variáveis de ambiente
+
+- Caso esteja utilizando o Windows é necessário adicionar a lib `cross-env` para utilizar por exemplo o `NODE_ENV=test`
+- `yarn add cross-env -D` para instalar o cross-env
