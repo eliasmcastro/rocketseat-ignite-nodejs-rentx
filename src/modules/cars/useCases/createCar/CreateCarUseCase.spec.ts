@@ -26,7 +26,7 @@ describe('Create Car', () => {
     expect(car).toHaveProperty('id');
   });
 
-  it('should be able to create a car with exists license plate', async () => {
+  it('should not be able to create a car with exists license plate', async () => {
     expect(async () => {
       await createCarUseCase.execute({
         category_id: 'abc-123',

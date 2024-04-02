@@ -18,7 +18,7 @@ describe('Create Car Specification', () => {
     );
   });
 
-  it('should not be able to add a new specification to a now-existent car', async () => {
+  it('should not be able to add a new specification to a non-existent car', async () => {
     expect(async () => {
       const car_id = '1234';
       const specifications_id = ['54321'];

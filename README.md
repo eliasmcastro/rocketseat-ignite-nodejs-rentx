@@ -113,15 +113,65 @@ Executar o comando `docker logs -f rentx`
 
 ### Testes automatizados
 
-Antes de executar os testes é necessário acessar a ferramenta que você está utilizando para acessar o banco de dados da aplicação e criar o banco de dados de teste chamado `rentx_test`
+Antes de executar os testes, é necessário criarmos um banco de dados exclusivo para os testes. Podemos fazer de duas formas:
 
-Comanda para criar o banco de dados
+**1. Utilizando alguma ferramenta (ex: DBeaver) para acesso ao banco de dados**
+
+Acessar a ferramenta que você está utilizando para acessar o banco de dados e criar o banco de dados de teste chamado `rentx_test` com o comando abaixo:
+
+Dados de conexão:
+  - Host: localhost
+  - Port: 5432
+  - Username: docker
+  - Password: ignite
 
 ```sql
 create database rentx_test;
 ```
 
-Para executar os testes
+**2. Acessando diretamente o container do banco de dados**
+
+Rodar o comando abaixo para obter o CONTAINER ID
+
+```bash
+docker ps
+```
+
+Acessar o container
+
+```bash
+docker exec -it ${CONTAINER ID} bash
+```
+
+Acessar o banco postgres
+
+```bash
+psql -U postgres
+```
+
+Criar o banco de dados de teste
+
+```sql
+create database rentx_test;
+```
+
+Visualizar todos os bancos de dados criados
+
+```sql
+\l
+```
+
+Sair do container
+
+```bash
+\q
+```
+
+```bash
+exit
+```
+
+**3. Executar os testes unitários e de integração**
 
 ```bash
 yarn test
@@ -378,6 +428,12 @@ yarn test
 - `yarn add @types/jest -D` instala a definição de tipo da biblioteca jest
 - `yarn add ts-jest -D` para instalar o ts-jest
 - `yarn jest --init` cria o arquivo de configuração do jest
+  - Would you like to use Jest when running "test" script in "package.json"? ... yes
+  - Would you like to use Typescript for the configuration file? ... yes
+  - Choose the test environment that will be used for testing » node
+  - Do you want Jest to add coverage reports? ... no
+  - Which provider should be used to instrument code for coverage? v8
+  - Automatically clear mock calls, instances, contexts and results before every test? ... yes
 - `yarn add supertest` para instalar o supertest (teste de integração)
 - `yarn add @types/supertest -D` para instalar o supertest (teste de integração)
 
