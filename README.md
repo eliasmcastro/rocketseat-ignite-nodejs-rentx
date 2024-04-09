@@ -26,6 +26,12 @@
   <img alt="Back-end" src=".github/database.png" width="90%">
 </p>
 
+<p align="center">Documentação</p>
+
+<p align="center">
+  <img alt="Back-end" src=".github/documentation.png" width="90%">
+</p>
+
 ## Como executar o projeto
 
 ### Clonar este repositório
