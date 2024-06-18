@@ -1,19 +1,30 @@
 import { ICreateUserDTO } from '@modules/accounts/dtos/ICreateUserDTO';
 import { UsersRepository } from '@modules/accounts/infra/in-memory/repositories/UsersRepository';
+import { UsersTokensRepository } from '@modules/accounts/infra/in-memory/repositories/UsersTokensRepository';
 import { CreateUserUseCase } from '@modules/accounts/useCases/createUser/CreateUserUseCase';
+import { DayjsDateProvider } from '@shared/container/providers/DateProvider/implementations/DayjsDateProvider';
 import { AppError } from '@shared/errors/AppError';
 
 import { AuthenticateUserUseCase } from './AuthenticateUserUseCase';
 
+let usersRepository: UsersRepository;
 let createUserUseCase: CreateUserUseCase;
 let authenticateUserUseCase: AuthenticateUserUseCase;
-let usersRepository: UsersRepository;
+let usersTokensRepository: UsersTokensRepository;
+let dateProvider: DayjsDateProvider;
 
 describe('Authenticate User', () => {
   beforeEach(() => {
     usersRepository = new UsersRepository();
     createUserUseCase = new CreateUserUseCase(usersRepository);
-    authenticateUserUseCase = new AuthenticateUserUseCase(usersRepository);
+    usersTokensRepository = new UsersTokensRepository();
+    dateProvider = new DayjsDateProvider();
+
+    authenticateUserUseCase = new AuthenticateUserUseCase(
+      usersRepository,
+      usersTokensRepository,
+      dateProvider,
+    );
   });
 
   it('should be able to authenticate an user', async () => {
@@ -32,6 +43,7 @@ describe('Authenticate User', () => {
     });
 
     expect(session).toHaveProperty('token');
+    expect(session).toHaveProperty('refresh_token');
   });
 
   it('should not be able to authenticate a nonexistent user', async () => {
