@@ -290,13 +290,13 @@ yarn test
 ### Configurando estrutura
 
 - `yarn init -y` cria o arquivo package.json
-- `yarn add typescript -D` instala o TypeScript
-- `yarn add express` instala o Express
-- `yarn add @types/express -D` instala a definição de tipo da biblioteca Express
-- `yarn add uuid` instala o UUID
-- `yarn add @types/uuid -D` instala a definição de tipo da biblioteca UUID
+- `yarn add typescript -D` para instalar o TypeScript
+- `yarn add express` para instalar o Express
+- `yarn add @types/express -D` para instalar a definição de tipo da biblioteca Express
+- `yarn add uuid` para instalar o UUID
+- `yarn add @types/uuid -D` para instalar a definição de tipo da biblioteca UUID
 - `yarn tsc --init` cria o arquivo de configuração do TypeScript
-- `yarn add ts-node-dev -D` instala ferramenta que reinicia automaticamente o servidor quando alterações nos arquivos são detectadas
+- `yarn add ts-node-dev -D` para instalar a ferramenta que reinicia automaticamente o servidor quando alterações nos arquivos são detectadas
 - Em `package.json`:
 
   ```json
@@ -349,7 +349,7 @@ yarn test
 ### Upload de arquivos
 
 - `yarn add multer` para instalar o multer
-- `yarn add @types/multer -D` instala a definição de tipo da biblioteca multer
+- `yarn add @types/multer -D` para instalar a definição de tipo da biblioteca multer
 
 ### Leitura de arquivos CSV
 
@@ -358,7 +358,7 @@ yarn test
 ### Swagger
 
 - `yarn add swagger-ui-express` para instalar o swagger
-- `yarn add @types/swagger-ui-express -D` instala a definição de tipo da biblioteca swagger
+- `yarn add @types/swagger-ui-express -D` para instalar a definição de tipo da biblioteca swagger
 - Para acessar a documentação criada: http://localhost:3333/api-docs
 
 ### Docker e Docker Compose
@@ -414,12 +414,12 @@ yarn test
 ### Criptografrar senha
 
 - `yarn add bcryptjs` para instalar o bcrypt
-- `yarn add @types/bcryptjs -D` instala a definição de tipo da biblioteca bcryptjs
+- `yarn add @types/bcryptjs -D` para instalar a definição de tipo da biblioteca bcryptjs
 
 ### Token do usuário
 
 - `yarn add jsonwebtoken` para instalar o jsonwebtoken
-- `yarn add @types/jsonwebtoken -D` instala a definição de tipo da biblioteca jsonwebtoken
+- `yarn add @types/jsonwebtoken -D` para instalar a definição de tipo da biblioteca jsonwebtoken
 
 ### Tratando erros
 
@@ -431,7 +431,7 @@ yarn test
 - Testes de integração
 - TDD (Test Driven Development)
 - `yarn add jest -D` para instalar o jest
-- `yarn add @types/jest -D` instala a definição de tipo da biblioteca jest
+- `yarn add @types/jest -D` para instalar a definição de tipo da biblioteca jest
 - `yarn add ts-jest -D` para instalar o ts-jest
 - `yarn jest --init` cria o arquivo de configuração do jest
   - Would you like to use Jest when running "test" script in "package.json"? ... yes
@@ -489,3 +489,12 @@ yarn test
 
 - Caso esteja utilizando o Windows é necessário adicionar a lib `cross-env` para utilizar por exemplo o `NODE_ENV=test`
 - `yarn add cross-env -D` para instalar o cross-env
+- `yarn add dotenv` para instalar o dotenv
+
+### Envio de e-mails
+
+- Ferramenta para uso de e-mail em ambiente de Dev: [Ethereal](https://ethereal.email/)
+- `yarn add nodemailer` para instalar o nodemailer
+- `yarn add @types/nodemailer -D` para instalar a definição de tipo da biblioteca nodemailer
+- Ferramenta para criar templates de e-mails: [Handlebars](https://handlebarsjs.com/)
+- `yarn add handlebars` para instalar o handlebars
