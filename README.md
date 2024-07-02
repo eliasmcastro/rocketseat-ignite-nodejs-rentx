@@ -421,6 +421,13 @@ yarn test
 - `yarn add jsonwebtoken` para instalar o jsonwebtoken
 - `yarn add @types/jsonwebtoken -D` para instalar a definição de tipo da biblioteca jsonwebtoken
 
+- Explicação sobre o uso de token e refreshToken
+  - O usuário loga na aplicação e recebe um refreshToken e um token. O token vai ter uma expiração menor e o refreshToken uma expiração maior.
+  - Quando o token expirar, vamos interceptar a chamada à API que deu erro e vamos enviar o refreshToken para o backend.
+  - O back-end recebe o refreshToken e retorna um novo token válido para o front-end, junto com possivelmente um novo refreshToken atualizado também.
+  - O front-end com os novos tokens recebidos, pode refazer as requests que falharam com novos tokens válidos e que não vão dar mais erros.
+  - Mas também existem outras possibilidades nesse fluxo, por exemplo, caso o refreshToken seja inválido, ele retorna um erro para o front-end, então o front-end pode redirecionar o usuário para a página de login novamente para ele logar novamente.
+
 ### Tratando erros
 
 - `yarn add express-async-errors` para instalar o express-async-errors
