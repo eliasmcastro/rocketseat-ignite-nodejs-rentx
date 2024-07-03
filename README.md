@@ -505,3 +505,7 @@ yarn test
 - `yarn add @types/nodemailer -D` para instalar a definição de tipo da biblioteca nodemailer
 - Ferramenta para criar templates de e-mails: [Handlebars](https://handlebarsjs.com/)
 - `yarn add handlebars` para instalar o handlebars
+
+### Trabalhando com AWS
+
+- `yarn add @aws-sdk/client-s3` para instalar o sdk da AWS S3
