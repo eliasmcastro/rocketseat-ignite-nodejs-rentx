@@ -509,3 +509,8 @@ yarn test
 ### Trabalhando com AWS
 
 - `yarn add @aws-sdk/client-s3` para instalar o sdk da AWS S3
+
+### Trabalhando com transformação de dados
+
+- `yarn add class-transformer` para instalar o class-transformer
+
