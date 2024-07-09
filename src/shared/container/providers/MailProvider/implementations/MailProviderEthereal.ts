@@ -42,7 +42,7 @@ class MailProviderEthereal implements IMailProvider {
 
     const message = await this.client.sendMail({
       to,
-      from: 'Rentx <noreplay@rentx.com.br>',
+      from: 'Rentx <no-replay@rentx.com.br>',
       subject,
       html: templateHTML,
     });
