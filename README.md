@@ -514,3 +514,15 @@ yarn test
 
 - `yarn add class-transformer` para instalar o class-transformer
 
+### Deploy
+
+- Utilização do Babel para converter o código feito em TypeScript para JavaScript
+- `yarn add @babel/cli @babel/core @babel/node @babel/plugin-proposal-class-properties @babel/plugin-proposal-decorators @babel/preset-env @babel/preset-typescript babel-plugin-module-resolver babel-plugin-transform-typescript-metadata -D` para instalar as dependências necessárias do Babel
+- Criação do arquivo `babel.config.js`
+- Em `package.json`:
+
+  ```json
+  "scripts": {
+    "build": "babel src --extensions \".js,.ts\" --out-dir dist --copy-files",
+  }
+  ```
