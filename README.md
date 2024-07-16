@@ -113,16 +113,6 @@ Você pode utilizar o DBeaver para acessar o banco de dados da aplicação, util
   - Username: docker
   - Password: ignite
 
-**8. Operações com os containers criados**
-
-- `docker-compose up` para criar e iniciar os containers
-- `docker-compose start` para iniciar os containers
-- `docker-compose stop` para parar os containers
-- `docker-compose down` para remover os containers
-- `docker-compose down -v --rmi local` para remover tudo (containers, volumes e imagens)
-- `docker ps` ver quais containers estão em execução
-- `docker logs -f ${CONTAINER ID}` ver logs do container
-
 ### Testes automatizados
 
 Antes de executar os testes, é necessário criarmos um banco de dados exclusivo para os testes. Podemos fazer de duas formas:
@@ -536,3 +526,10 @@ yarn test
 - Criar o arquivo `ormconfig.json` utilizando o arquivo `ormconfig.example.json`
 - Criar o arquivo `.env` utilizando o arquivo `.env.example`
 - Iniciar apenas o serviço database `docker-compose up -d database`
+
+### Github Actions
+
+- Acessar repositório do GitHub -> Actions -> set up a workflow yourself
+- Cria todo o passo a passo para realização do deploy
+  - Um exemplo de actions encontra-se em .github/workflows/main.yml
+  - É necessário configurar as Keys (HOST, PORT, USER, PASS do servidor) em Settings no repositório do GitHub
