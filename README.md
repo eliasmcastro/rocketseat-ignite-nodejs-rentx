@@ -61,12 +61,12 @@ Instalar as dependências do projeto
 yarn
 ```
 
-**2. Criar os containers utilizando o Docker**
+**2. Cria o container do banco de dados utilizando o Docker**
 
-Criar e iniciar os containers do banco de dados e da aplicação
+Criar e iniciar o container do banco de dados
 
 ```bash
-docker-compose up -d
+docker-compose up -d database
 ```
 
 **3. Executar as migrations**
@@ -88,7 +88,15 @@ Dados do usuário:
  - email: admin@rentx.com.br
  - password: admin
 
-**5. Rotas da aplicação**
+**5. Iniciar a aplicação**
+
+Iniciar a aplicação
+
+```bash
+yarn dev
+```
+
+**6. Rotas da aplicação**
 
 - A aplicação começará a ser executada em http://localhost:3333
 - A documentação da API pode ser acessada em http://localhost:3333/api-docs
@@ -97,17 +105,13 @@ _Dica: utilizar o Insomnia para testar as rotas_
 
 - Abrir o Insomnia -> Application -> Preferences -> Data -> Import Data -> From File -> Selecionar o arquivo insomnia.json
 
-**6. Banco de dados**
+**7. Banco de dados**
 
 Você pode utilizar o DBeaver para acessar o banco de dados da aplicação, utilizando os seguintes dados de conexão:
   - Host: localhost
   - Database: rentx
   - Username: docker
   - Password: ignite
-
-**7. Logs da aplicação**
-
-Executar o comando `docker logs -f rentx`
 
 **8. Operações com os containers criados**
 
@@ -116,6 +120,8 @@ Executar o comando `docker logs -f rentx`
 - `docker-compose stop` para parar os containers
 - `docker-compose down` para remover os containers
 - `docker-compose down -v --rmi local` para remover tudo (containers, volumes e imagens)
+- `docker ps` ver quais containers estão em execução
+- `docker logs -f ${CONTAINER ID}` ver logs do container
 
 ### Testes automatizados
 
@@ -526,3 +532,7 @@ yarn test
     "build": "babel src --extensions \".js,.ts\" --out-dir dist --copy-files",
   }
   ```
+- Executar aplicação após o build: `node dist/shared/infra/http/server.js`
+- Criar o arquivo `ormconfig.json` utilizando o arquivo `ormconfig.example.json`
+- Criar o arquivo `.env` utilizando o arquivo `.env.example`
+- Iniciar apenas o serviço database `docker-compose up -d database`
