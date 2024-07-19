@@ -61,7 +61,12 @@ Instalar as dependências do projeto
 yarn
 ```
 
-**2. Cria o container do banco de dados utilizando o Docker**
+**2. Arquivos de configurações**
+
+Criar o arquivo `ormconfig.json` utilizando o arquivo `ormconfig.example.json`
+Criar o arquivo `.env` utilizando o arquivo `.env.example`
+
+**3. Cria o container do banco de dados utilizando o Docker**
 
 Criar e iniciar o container do banco de dados
 
@@ -69,7 +74,7 @@ Criar e iniciar o container do banco de dados
 docker-compose up -d database
 ```
 
-**3. Executar as migrations**
+**4. Executar as migrations**
 
 Executar as migrations
 
@@ -77,7 +82,7 @@ Executar as migrations
 yarn typeorm migration:run
 ```
 
-**4. Criar usuário admin**
+**5. Criar usuário admin**
 
 Executar o comando
 
@@ -88,7 +93,7 @@ Dados do usuário:
  - email: admin@rentx.com.br
  - password: admin
 
-**5. Iniciar a aplicação**
+**6. Iniciar a aplicação**
 
 Iniciar a aplicação
 
@@ -96,7 +101,7 @@ Iniciar a aplicação
 yarn dev
 ```
 
-**6. Rotas da aplicação**
+**7. Rotas da aplicação**
 
 - A aplicação começará a ser executada em http://localhost:3333
 - A documentação da API pode ser acessada em http://localhost:3333/api-docs
@@ -105,7 +110,7 @@ _Dica: utilizar o Insomnia para testar as rotas_
 
 - Abrir o Insomnia -> Application -> Preferences -> Data -> Import Data -> From File -> Selecionar o arquivo insomnia.json
 
-**7. Banco de dados**
+**8. Banco de dados**
 
 Você pode utilizar o DBeaver para acessar o banco de dados da aplicação, utilizando os seguintes dados de conexão:
   - Host: localhost
@@ -522,10 +527,13 @@ yarn test
     "build": "babel src --extensions \".js,.ts\" --out-dir dist --copy-files",
   }
   ```
-- Executar aplicação após o build: `node dist/shared/infra/http/server.js`
+
+- Para gerar o build da aplicação executar `yarn build`
 - Criar o arquivo `ormconfig.json` utilizando o arquivo `ormconfig.example.json`
+  - Alterar a extensão .ts para .js
 - Criar o arquivo `.env` utilizando o arquivo `.env.example`
 - Iniciar apenas o serviço database `docker-compose up -d database`
+- Executar aplicação após o build: `node dist/shared/infra/http/server.js`
 
 ### Github Actions
 
@@ -533,3 +541,38 @@ yarn test
 - Cria todo o passo a passo para realização do deploy
   - Um exemplo de actions encontra-se em .github/workflows/main.yml
   - É necessário configurar as Keys (HOST, PORT, USER, PASS do servidor) em Settings no repositório do GitHub
+
+### Configurando Proxy Reverso
+
+- Utilizando o Nginx
+  - Executar `sudo apt install nginx` para instalar o nginx
+  - Caminho para criar arquivo de configuração: `cd /etc/nginx/sites-avaliable/`
+    - `sudo touch rentx`
+    - `vim rentx`
+
+      ```sh
+      server {
+        listen 80 default_server;
+        listen [::]:80 default_server;
+
+        location / {
+          proxy_pass http://localhost:3333;
+          proxy_http_version 1.1;
+          proxy_set_header Upgrade $http_upgrade;
+          proxy_set_header Connection 'upgrade';
+          proxy_set_header Host $host;
+          proxy_cache_bypass $http_upgrade;
+        }
+      }
+      ```
+
+    - Criar link simbólico: `sudo ln -s /etc/nginx/sites-avaliable/rentx rentx`
+    - Remover o default: `sudo rm -rf default`
+      - Remover também o default do caminho anterior: `cd ../` e `sudo rm -rf default`
+    - Realizar o restart do nginx: `sudo service nginx restart`
+
+### Utilizando PM2
+
+- O [PM2](https://pm2.keymetrics.io/) é um gerenciador de processos do Node.js
+- Realizar a instação conforme instrução presente no site
+- Exemplo de start da aplicação: `pm2 start dist/shared/infra/http/server.js --name rentx`
