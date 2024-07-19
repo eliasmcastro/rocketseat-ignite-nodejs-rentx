@@ -576,3 +576,13 @@ yarn test
 - O [PM2](https://pm2.keymetrics.io/) é um gerenciador de processos do Node.js
 - Realizar a instação conforme instrução presente no site
 - Exemplo de start da aplicação: `pm2 start dist/shared/infra/http/server.js --name rentx`
+
+### Configurando domínio e SSL
+
+- Verificar se DNS foi propagado: https://www.whatsmydns.net/
+- Auxilia na configuração do certificado: https://certbot.eff.org/
+
+### Utilizando CORS
+
+- `yarn add cors` para instalar o cors
+- `yarn add @types/cors -D` para instalar a definição de tipo da biblioteca cors
