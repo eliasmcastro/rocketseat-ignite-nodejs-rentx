@@ -66,12 +66,12 @@ yarn
 Criar o arquivo `ormconfig.json` utilizando o arquivo `ormconfig.example.json`
 Criar o arquivo `.env` utilizando o arquivo `.env.example`
 
-**3. Cria o container do banco de dados utilizando o Docker**
+**3. Cria o container do banco de dados e redis utilizando o Docker**
 
-Criar e iniciar o container do banco de dados
+Criar e iniciar o container do banco de dados e do redis
 
 ```bash
-docker-compose up -d database
+docker-compose up -d
 ```
 
 **4. Executar as migrations**
@@ -530,9 +530,10 @@ yarn test
 
 - Para gerar o build da aplicação executar `yarn build`
 - Criar o arquivo `ormconfig.json` utilizando o arquivo `ormconfig.example.json`
-  - Alterar a extensão .ts para .js
+  - Alterar o `src` para `dist`
+  - Alterar a extensão `.ts` para `.js`
 - Criar o arquivo `.env` utilizando o arquivo `.env.example`
-- Iniciar apenas o serviço database `docker-compose up -d database`
+- Criar e iniciar o container do banco de dados e do redis `docker-compose up -d`
 - Executar aplicação após o build: `node dist/shared/infra/http/server.js`
 
 ### Github Actions
@@ -586,3 +587,16 @@ yarn test
 
 - `yarn add cors` para instalar o cors
 - `yarn add @types/cors -D` para instalar a definição de tipo da biblioteca cors
+
+### Segurança
+
+- O [rate-limiter-flexible](https://github.com/animir/node-rate-limiter-flexible) conta e limita o número de ações por chave e protege contra ataques DDoS e de força bruta em qualquer escala
+- `yarn add redis` para instalar o redis
+- `yarn add @types/redis -D` para instalar a definição de tipo da biblioteca redis
+- `yarn add rate-limiter-flexible` para instalar o rate-limiter-flexible
+
+### Monitoramento
+
+- O [Sentry](https://sentry.io/welcome/) serve para monitorar erros e performance da aplicação
+  - Você deve criar uma conta no sentry.io para gerar o DNS
+- `yarn add @sentry/node @sentry/profiling-node` para instalar o sentry

@@ -5,9 +5,12 @@ import express, { NextFunction, Request, Response } from 'express';
 import 'express-async-errors';
 import swaggerUi from 'swagger-ui-express';
 
-import '@shared/container';
+import '@config/sentry';
 import upload from '@config/upload';
+import * as Sentry from '@sentry/node';
+import '@shared/container';
 import { AppError } from '@shared/errors/AppError';
+import rateLimiter from '@shared/infra/http/middlewares/rateLimiter';
 import createConnection from '@shared/infra/typeorm';
 
 import swaggerFile from '../../../swagger.json';
@@ -15,6 +18,10 @@ import { router } from './routes';
 
 createConnection();
 const app = express();
+
+if (process.env.NODE_ENV !== 'test') {
+  app.use(rateLimiter);
+}
 
 app.use(express.json());
 
@@ -24,6 +31,10 @@ app.use('/cars', express.static(`${upload.tmpFolder}/cars`));
 
 app.use(cors());
 app.use(router);
+
+if (process.env.NODE_ENV !== 'test') {
+  Sentry.setupExpressErrorHandler(app);
+}
 
 app.use(
   (err: Error, request: Request, response: Response, next: NextFunction) => {
